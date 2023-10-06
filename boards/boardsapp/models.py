@@ -35,6 +35,10 @@ class Topic(models.Model):
     def __str__(self):
         return self.subject
 
+    @property
+    def get_baord(self):
+        return self.board
+
 
 class Post (models.Model):
     message = models.TextField(max_length=4000)
