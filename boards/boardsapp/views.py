@@ -6,16 +6,23 @@ from rest_framework.views import APIView
 from .serializers import BoardSerializer,  TopicSerializer, PostSerializer
 from rest_framework.response import Response
 from rest_framework import status, generics
+from rest_framework import viewsets
 # Create your views here.
 
 
-# def boards_list(request):
+class BoardViewSet(viewsets.ModelViewSet):
+    queryset = Board.objects.all()
+    serializer_class = BoardSerializer
 
+
+# Basic API
+# def boards_list(request):
 #     boards = Board.objects.all()
 #     data = {'Results': list(boards.values('pk', 'name', 'description'))}
 #     return JsonResponse(data)
 
 
+# API View
 # class BoardList(APIView):
 
 #     def get(self, request):
@@ -31,9 +38,11 @@ from rest_framework import status, generics
 
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class BoardList(generics.ListCreateAPIView):
-    queryset = Board.objects.all()
-    serializer_class = BoardSerializer
+
+# Generics Views
+# class BoardList(generics.ListCreateAPIView):
+#     queryset = Board.objects.all()
+#     serializer_class = BoardSerializer
 
 
 class BoardTopic(generics.ListCreateAPIView):
